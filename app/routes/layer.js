@@ -5,7 +5,8 @@ import { __dirname } from '../../config.js';
 
 const router = express.Router();
 
-router.all('*', (req, res) => {
+router.get(/^\/.*/, (req, res) => {
+    if (req.path.split('.').length !== 1) return
     if (req.path == '/') return res.render('layer.hbs', layerPage);
 
     res.render(
